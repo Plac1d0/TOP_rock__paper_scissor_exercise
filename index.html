@@ -16,64 +16,64 @@
 <body>
     <!--this is an inline javascript, we will transfer this as an external javalink script once we are done coding-->
     <script>
-        console.log("pwet");
-        //we will be starting the game with a prompt for their choice of hand
-        //the player's choice of hand will be stored in a variable called playerChoice and displays it into the console
-        let playerChoice = prompt("Choose your hand, type your answer");
-        playerChoice = playerChoice.toUpperCase();
-        console.log("Player has chosen: " + playerChoice);
-        //the computer will choose a Random hand and display it into the console
-        function computerChoose() { //we first defined a function for computer to choose a hand randomly
-            var choices = [1,2,3];
-            var hands = ["SCISSOR","PAPER", "ROCK"]   
-            var index = Math.floor(Math.random() * choices.length); //Math.random yields
-            console.log(index);
-            console.log(hands[index]);
-            return hands[index];
-        }
-        let computerChoice = computerChoose()
-        console.log("Computer chooses: " + computerChoice);
-        
-        //we will evaluate who wins either by using if statements or switch or comparators, whichever I found easiest at the moment
-        if (playerChoice == computerChoice){
-            console.log("DRAW");
-        }
-
-        else{
-            switch (playerChoice){
-                case "SCISSOR":
-                    if (computerChoice == "ROCK"){
-                        console.log("you LOOSE");
-                    }
-                    else {
-                        console.log("you WIN");
-                    }
-                    break;
-
-                case "ROCK":
-                    if (computerChoice == "PAPER"){
-                        console.log("you LOOSE");
-                    }
-                    else {
-                        console.log("you WIN");
-                    }
-                    break;
-
-                case "PAPER":
-                    if (computerChoice == "SCISSOR"){
-                        console.log("you LOOSE");
-                    }
-                    else {
-                        console.log("you WIN");
-                    }
-                    break;
+        function play(){
+            //we will be starting the game with a prompt for their choice of hand
+            //the player's choice of hand will be stored in a variable called playerChoice and displays it into the console
+            let playerChoice = prompt("Choose your hand, type your answer");
+            playerChoice = playerChoice.toUpperCase();
+            console.log("Player has chosen: " + playerChoice);
+            //the computer will choose a Random hand and display it into the console
+            function computerChoose() { //we first defined a function for computer to choose a hand randomly
+                var choices = [1,2,3];
+                var hands = ["SCISSOR","PAPER", "ROCK"]   
+                var index = Math.floor(Math.random() * choices.length); //Math.random yields
+                console.log(index);
+                console.log(hands[index]);
+                return hands[index];
+            }
+            let computerChoice = computerChoose()
+            console.log("Computer chooses: " + computerChoice);
             
+            //we will evaluate who wins either by using if statements or switch or comparators, whichever I found easiest at the moment
+            if (playerChoice == computerChoice){
+                console.log("DRAW");
             }
 
-        }
+            else{
+                switch (playerChoice){
+                    case "SCISSOR":
+                        if (computerChoice == "ROCK"){
+                            console.log("you LOOSE");
+                        }
+                        else {
+                            console.log("you WIN");
+                        }
+                        break;
 
+                    case "ROCK":
+                        if (computerChoice == "PAPER"){
+                            console.log("you LOOSE");
+                        }
+                        else {
+                            console.log("you WIN");
+                        }
+                        break;
 
+                    case "PAPER":
+                        if (computerChoice == "SCISSOR"){
+                            console.log("you LOOSE");
+                        }
+                        else {
+                            console.log("you WIN");
+                        }
+                        break;
+                
+                }
 
+            }
+
+        
+    }
     </script>
 </body>
 
