@@ -35,14 +35,42 @@ structure our UI for rock paper and scissors-->
 <div class="gameSection">
 
     <div class="leftSection">
-        <button class="rockSelect">ROCK</button>
-        <button class="paperSelect">PAPER</button>
-        <button class="scissorSelect">SCISSOR</button>
+        <button id="rockSelect">ROCK</button>
+        <button id="paperSelect">PAPER</button>
+        <button id="scissorSelect">SCISSOR</button>
     </div>
 
-    <div class="gameinfo">NARRATION</div>
+    <div class="gameInfo">NARRATION</div>
 </div>
 
+
+
+
+
+<script> 
+/*store the description of the gameinfo to the narration Text object */ 
+const narrationText = document.querySelector(".gameInfo");
+narrationText.classList.toggle("active");
+
+/*We have added the onlick event on the Rock Button*/
+const rockButton = document.querySelector("#rockSelect");
+rockButton.onclick = () => narrationText.textContent = "rock is Selected";
+
+/*for the Paper and Scissor selection button, we are going to use event listener*/
+const paperButton = document.querySelector("#paperSelect");
+const scissorButton = document.querySelector("#scissorSelect");
+
+paperButton.addEventListener("click", () => {narrationText.textContent = "Paper is selected"});
+scissorButton.addEventListener("click", scissorSelected);
+
+/*Lets try to create a function for scissor select*/
+function scissorSelected() {
+    narrationText.textContent = "Scissor is selected"
+    console.log(e.target)
+}
+
+
+</script>
 
 </body>
 
