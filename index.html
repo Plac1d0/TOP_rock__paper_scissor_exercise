@@ -62,13 +62,83 @@ scissorButton.param = "SCISSOR";
 paperButton.param = "PAPER";
 rockButton.param = "ROCK";
 
-scissorButton.addEventListener("click", playGame);
-paperButton.addEventListener("click", playGame);
-rockButton.addEventListener("click", playGame);
+
+enableButtons()
+
+function enableButtons(){
+    scissorButton.addEventListener("click", playGame);
+    paperButton.addEventListener("click", playGame);
+    rockButton.addEventListener("click", playGame);
+}
+
+function disableButtons() {
+    scissorButton.removeEventListener("click", playGame);
+    paperButton.removeEventListener("click", playGame);
+    rockButton.removeEventListener("click", playGame);
+}
+
+
+//A function that decides the computer's hand randomly.
+function computerChoose() { 
+        var choices = [1,2,3];
+        var hands = ["SCISSOR","PAPER", "ROCK"]   
+        var index = Math.floor(Math.random() * choices.length); //Math.random yields
+        console.log("Computer has chosen: "+hands[index]);
+        return hands[index];
+}
+
+//A function that takes the player and computer choice and decides the outcome
+function decideWhoWins(playerChoice, computerChoice) {
+if (playerChoice == computerChoice){
+        console.log("DRAW");
+    }
+
+    else{
+        switch (playerChoice){
+            case "SCISSOR":
+                if (computerChoice == "ROCK"){
+                    console.log("you LOOSE");
+                    computerScore++;
+                }
+                else {
+                    console.log("you WIN");
+                    playerScore++;
+                }
+                break;
+
+            case "ROCK":
+                if (computerChoice == "PAPER"){
+                    console.log("you LOOSE");
+                    computerScore++;
+                }
+                else {
+                    console.log("you WIN");
+                    playerScore++;
+                }
+                break;
+
+            case "PAPER":
+                if (computerChoice == "SCISSOR"){
+                    console.log("you LOOSE");
+                    computerScore++;
+                }
+                else {
+                    console.log("you WIN");
+                    playerScore++;
+                }
+                break;
+        
+        }
+
+    }
+}
 
 /*now let's try to create a function that triggers when a certain button is pressed*/narrationText
 function playGame (evt) {
-    narrationText.textContent = evt.currentTarget.param;
+    
+    playerChoice = evt.currentTarget.param;
+    computerChoice = computerChoose();
+    narrationText.textContent = `You have chosen ${playerChoice} and computer has chosen ${computerChoice}`;
 }
 
 

@@ -31,7 +31,7 @@ playerChoice = playerChoice.toUpperCase();
 console.log("Player has chosen: " + playerChoice);
 
 
-//Determine the computer's hand.
+//Determine the computer's hand.    
 let computerChoice = computerChoose();
 
 //Determine who wins and add the score.
