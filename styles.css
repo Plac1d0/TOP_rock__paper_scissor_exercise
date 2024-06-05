@@ -1,0 +1,42 @@
+*{
+    border-color: black;
+    border-style: solid;
+}
+
+.title {
+    justify-content: space-evenly;
+    gap: 10px;
+    margin: 2%; 
+    background-color: red;
+    text-align: center;
+}
+/*------------------SCORE SECTION STYLES---------------------------------*/
+.scoreSection {
+    justify-content: space-evenly;
+    background-color:blue;
+}
+
+.scoreText {
+    justify-content: space-evenly;
+    margin: 2%; 
+    background-color:ORANGE;
+
+}
+
+.scoreTable {
+    display: flex;
+    margin: 2%; 
+    justify-content: center;
+    background-color:green;
+}
+
+.gameSection {
+    display: flex;
+    margin: 2%; 
+    justify-content: center;
+    background-color:yellow;
+}
+
+.active {
+    background-color: brown;
+}

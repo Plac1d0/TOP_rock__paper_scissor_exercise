@@ -1,101 +1,165 @@
-<script>
+<!DOCTYPE HTML>
 
-    let playerScore = 0;
-        computerScore = 0;
-    
-    for (rounds = 1; rounds <= 5 ; rounds++){
-        console.log("ROUND: "+ rounds);
-        console.log("Player Score :" + playerScore + " vs " + "Computer Score : " + computerScore);
-        play();
-    }
-    
-    if (playerScore > computerScore){
-        console.log ("Player wins the game");
-    }
-    
-    else if (playerScore == computerScore){
-        console.log ("Draw");
-    }
-    
-    else {
-        console.log ("Computer wins the game");
-    }
- 
- 
-////---------------------------------------------------------FUNCTION BANK-------------------------------------------------------------/////
+<html lang="en">
 
-//The main gameplay
-function play () {
+<head>
+<meta charset="UTF-8">
+<title> ROCK PAPER SCISSOR with UI</title>
+
+<link rel="stylesheet", href="styles.css">
+
+</head>
+
+<body>
+<!--I have created a simple framework in which we 
+structure our UI for rock paper and scissors-->
+
+    <div class="title">ROCK PAPER SCISSOR GAME SAMPLE</div>
     
-    //Determine the player's hand.
-    let playerChoice = prompt("Choose your hand, type your answer");
-        playerChoice = playerChoice.toUpperCase();
-        console.log("Player has chosen: " + playerChoice);
+    <div class="scoreSection">
+        <div class="scoreText">SCORE</div>
+        <div class="scoreTable">
+            <div class="humanScoreContainer">
+                <div class="text">HUMAN</div>
+                <div id="humanScore">pwet</div>
+            </div>
+
+            <div class="computerScoreContainer">
+                <div class="text">COMPUTER</div>
+                <div id="computerScore">pwet</div>
+            </div>
+        </div>
+    </div>
 
 
-    //Determine the computer's hand.
-    let computerChoice = computerChoose();
+<div class="gameSection">
 
-    //Determine who wins and add the score.
-    decideWhoWins(playerChoice,computerChoice);
+    <div class="leftSection">
+        <button id="rockSelect">ROCK</button>
+        <button id="paperSelect">PAPER</button>
+        <button id="scissorSelect">SCISSOR</button>
+    </div>
+
+    <div class="gameInfo">NARRATION</div>
+</div>
+
+
+
+
+
+<script> 
+/*store the description of the gameinfo to the narration Text object */ 
+const narrationText = document.querySelector(".gameInfo");
+narrationText.classList.toggle("active");
+
+/*We will now create a constant that contains the selected button for each hand option*/
+const rockButton = document.querySelector("#rockSelect");
+const paperButton = document.querySelector("#paperSelect");
+const scissorButton = document.querySelector("#scissorSelect");
+
+/*Then we would put an event listener and parameter on each selected button for us to retrieve later when we call our playGame function*/
+scissorButton.param = "SCISSOR";
+paperButton.param = "PAPER";
+rockButton.param = "ROCK";
+
+/*Set the scores board in the HTML into a variable*/
+let playerScore = 0;
+let computerScore = 0;
+
+document.querySelector("#humanScore").innerHTML = playerScore;
+document.querySelector("#computerScore").innerHTML = computerScore;
+
+
+
+enableButtons()
+
+function enableButtons(){
+    scissorButton.addEventListener("click", playGame);
+    paperButton.addEventListener("click", playGame);
+    rockButton.addEventListener("click", playGame);
 }
-    
+
+function disableButtons() {
+    scissorButton.removeEventListener("click", playGame);
+    paperButton.removeEventListener("click", playGame);
+    rockButton.removeEventListener("click", playGame);
+}
+
+
 //A function that decides the computer's hand randomly.
 function computerChoose() { 
-                var choices = [1,2,3];
-                var hands = ["SCISSOR","PAPER", "ROCK"]   
-                var index = Math.floor(Math.random() * choices.length); //Math.random yields
-                console.log(index);
-                console.log("Computer has chosen: "+hands[index]);
-                return hands[index];
+        var choices = [1,2,3];
+        var hands = ["SCISSOR","PAPER", "ROCK"]   
+        var index = Math.floor(Math.random() * choices.length); //Math.random yields
+        console.log("Computer has chosen: "+hands[index]);
+        return hands[index];
 }
 
 //A function that takes the player and computer choice and decides the outcome
-function decideWhoWins(playerChoice, computerChoice) {
-    if (playerChoice == computerChoice){
-                console.log("DRAW");
-            }
+function decideWhoWins() {
+    // narrationText.textContent = "this functions has run";
+if (playerChoice === computerChoice){
+    narrationText.textContent += ", the game is DRAW";
+    }
 
-            else{
-                switch (playerChoice){
-                    case "SCISSOR":
-                        if (computerChoice == "ROCK"){
-                            console.log("you LOOSE");
-                            computerScore++;
-                        }
-                        else {
-                            console.log("you WIN");
-                            playerScore++;
-                        }
-                        break;
-
-                    case "ROCK":
-                        if (computerChoice == "PAPER"){
-                            console.log("you LOOSE");
-                            computerScore++;
-                        }
-                        else {
-                            console.log("you WIN");
-                            playerScore++;
-                        }
-                        break;
-
-                    case "PAPER":
-                        if (computerChoice == "SCISSOR"){
-                            console.log("you LOOSE");
-                            computerScore++;
-                        }
-                        else {
-                            console.log("you WIN");
-                            playerScore++;
-                        }
-                        break;
-                
+    else{
+        switch (playerChoice){
+            case "SCISSOR":
+                if (computerChoice === "ROCK"){
+                    narrationText.textContent += ", you LOOSE";
+                    computerScore++;
                 }
+                else {
+                    narrationText.textContent += ", you WIN";
+                    playerScore++;
+                }
+                break;
 
-            }
+            case "ROCK":
+                if (computerChoice === "PAPER"){
+                    narrationText.textContent += ", you LOOSE";
+                    computerScore++;
+                }
+                else {
+                    narrationText.textContent += ", you WIN";
+                    playerScore++;
+                }
+                break;
+
+            case "PAPER":
+                if (computerChoice === "SCISSOR"){
+                    narrationText.textContent += ", you LOOSE";
+                    computerScore++;
+                }
+                else {
+                    narrationText.textContent += ", you WIN";
+                    playerScore++;
+                }
+                break;
+        
+        }
+
+    }
+document.querySelector("#humanScore").innerHTML = playerScore;
+document.querySelector("#computerScore").innerHTML = computerScore;
+enableButtons();
+}
+
+/*now let's try to create a function that triggers when a certain button is pressed*/
+function playGame (evt) {
+    disableButtons();
+    playerChoice = evt.currentTarget.param;
+    computerChoice = computerChoose();
+    narrationText.textContent = `You have chosen ${playerChoice} and computer has chosen ${computerChoice}`;
+    const timeout = setTimeout(decideWhoWins, 2000);
+    document.querySelector("#humanScore").innerHTML = playerScore;
+    document.querySelector("#computerScore").innerHTML = computerScore;
 }
 
 
-
 </script>
+
+</body>
+
+
+</html>
