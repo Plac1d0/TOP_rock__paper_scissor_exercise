@@ -63,8 +63,8 @@ paperButton.param = "PAPER";
 rockButton.param = "ROCK";
 
 /*Set the scores board in the HTML into a variable*/
-playerScore = 0;
-computerScore = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 document.querySelector("#humanScore").innerHTML = playerScore;
 document.querySelector("#computerScore").innerHTML = computerScore;
@@ -140,7 +140,6 @@ if (playerChoice === computerChoice){
         }
 
     }
-narrationText.textContent += `; the current score is ${playerScore}-${computerScore}`;
 document.querySelector("#humanScore").innerHTML = playerScore;
 document.querySelector("#computerScore").innerHTML = computerScore;
 enableButtons();
@@ -153,8 +152,9 @@ function playGame (evt) {
     computerChoice = computerChoose();
     narrationText.textContent = `You have chosen ${playerChoice} and computer has chosen ${computerChoice}`;
     const timeout = setTimeout(decideWhoWins, 2000);
-
-
+    document.querySelector("#humanScore").innerHTML = playerScore;
+    document.querySelector("#computerScore").innerHTML = computerScore;
+    
 }
 
 
