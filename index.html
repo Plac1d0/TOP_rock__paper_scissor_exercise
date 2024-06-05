@@ -52,21 +52,23 @@ structure our UI for rock paper and scissors-->
 const narrationText = document.querySelector(".gameInfo");
 narrationText.classList.toggle("active");
 
-/*We have added the onlick event on the Rock Button*/
+/*We will now create a constant that contains the selected button for each hand option*/
 const rockButton = document.querySelector("#rockSelect");
-rockButton.onclick = () => narrationText.textContent = "rock is Selected";
-
-/*for the Paper and Scissor selection button, we are going to use event listener*/
 const paperButton = document.querySelector("#paperSelect");
 const scissorButton = document.querySelector("#scissorSelect");
 
-paperButton.addEventListener("click", () => {narrationText.textContent = "Paper is selected"});
-scissorButton.addEventListener("click", scissorSelected);
+/*Then we would put an event listener and parameter on each selected button for us to retrieve later when we call our playGame function*/
+scissorButton.param = "SCISSOR";
+paperButton.param = "PAPER";
+rockButton.param = "ROCK";
 
-/*Lets try to create a function for scissor select*/
-function scissorSelected() {
-    narrationText.textContent = "Scissor is selected"
-    console.log(e.target)
+scissorButton.addEventListener("click", playGame);
+paperButton.addEventListener("click", playGame);
+rockButton.addEventListener("click", playGame);
+
+/*now let's try to create a function that triggers when a certain button is pressed*/narrationText
+function playGame (evt) {
+    narrationText.textContent = evt.currentTarget.param;
 }
 
 
